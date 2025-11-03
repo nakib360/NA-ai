@@ -7,7 +7,7 @@ const Main = () => {
 
     return (
         <div className={`relative p-5 min-h-screen text-foreground text-xl ${theme} bg-background transition-all `}>
-            <div className="fixed w-full top-0 left-0"> 
+            <div className="fixed w-full top-0 left-0 z-50"> 
                 <Header theme={theme} setTheme={setTheme} />
             </div>
             <Outlet />

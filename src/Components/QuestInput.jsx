@@ -12,7 +12,7 @@ const QuestInput = ({ setQuestion }) => {
   }, [value]);
 
   return (
-    <div className="relative bg-secondary rounded-2xl text-sm p-5">
+    <div className="relative bg-secondary rounded-2xl text-sm p-5 shadow-md">
       <textarea
         ref={textareaRef}
         onChange={(e) => setValue(e.target.value)}

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import QuestInput from "./QuestInput";
 import AnsField from "./AnsField";
 import axios from "axios";
+import { GradientText } from "./ui/shadcn-io/gradient-text";
 
 const Home = () => {
   const [question, setQuestion] = useState("");
@@ -19,6 +20,10 @@ const Home = () => {
     <div className="flex flex-col justify-between items-center">
       {/* Chat display area */}
       <div className="w-full md:w-4/6 flex-1 p-3 mt-10 mb-25">
+        <div className="text-foreground text-center text-3xl md:text-4xl mt-40">
+          <GradientText className="" text="Hi, I am NA Ai" />
+          <p className="text-xs text-gray-400">What do you think today?</p>
+        </div>
         <AnsField question={question} answer={answer} />
       </div>
 
