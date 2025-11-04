@@ -7,6 +7,9 @@ import { GradientText } from "./ui/shadcn-io/gradient-text";
 const Home = () => {
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
+  const [loading, setLoading] = useState(false);
+  console.log("answer is loading", loading);
+
 
   useEffect(() => {
     if (!question.trim()) return;
@@ -19,17 +22,17 @@ const Home = () => {
   return (
     <div className="flex flex-col justify-between items-center">
       {/* Chat display area */}
-      <div className="w-full md:w-4/6 flex-1 p-3 mt-10 mb-25">
+      <div className="w-full md:w-4/6 flex-1 py-3 mt-10 mb-25">
         <div className="text-foreground text-center text-3xl md:text-4xl mt-40">
-          <GradientText className="" text="Hi, I am NA Ai" />
+          <GradientText className="font-semibold" text="Hi, I am NA Ai" />
           <p className="text-xs text-gray-400">What do you think today?</p>
         </div>
-        <AnsField question={question} answer={answer} />
+        <AnsField setLoading={setLoading} question={question} answer={answer} />
       </div>
 
       {/* Fixed bottom input area */}
-      <div className="w-full md:w-4/6 p-3 bg-background fixed bottom-0">
-        <QuestInput setQuestion={setQuestion} />
+      <div className="w-full md:w-4/6 p-3 fixed bottom-0">
+        <QuestInput loading={loading} setQuestion={setQuestion} />
       </div>
     </div>
   );

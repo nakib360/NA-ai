@@ -1,9 +1,8 @@
 import { Moon, PanelRight, Sun } from "lucide-react";
-import { Button } from "./ui/button";
 
 const Header = ({ theme, setTheme }) => {
     return (
-        <header className="flex justify-between items-center bg-background p-5 pb-0">
+        <header className={`flex justify-between items-center bg-background p-5 shadow-lg ${window.scrollY !== 0 ? "shadow-secondary" : ""}`}>
             <PanelRight size={20} strokeWidth={2.75} />
 
             <div className="flex items-center gap-3">
