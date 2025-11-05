@@ -12,6 +12,7 @@ const Header = ({ theme, setTheme }) => {
 
                 </div>
 
+
                 <div className="flex items-center gap-3">
                     <p className="text-sm cursor-pointer">Sign in</p>
                     <button className="flex justify-center items-center text-background bg-foreground text-sm px-3 py-2 rounded-sm dark:hover:bg-foreground/90 hover:bg-foreground/70 cursor-pointer">Log in</button>

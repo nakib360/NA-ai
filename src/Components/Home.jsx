@@ -8,16 +8,18 @@ const Home = () => {
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
   const [loading, setLoading] = useState(false);
+  const [modal, setModal] = useState("chatGPT");
+
   console.log("answer is loading", loading);
 
 
   useEffect(() => {
     if (!question.trim()) return;
 
-    axios.post("https://na-ai-server.onrender.com/gemini", { question })
+    axios.post(`https://na-ai-server.onrender.com/${modal === "chatGPT" ? "Hugging-face" : "gemini"}`, { question })
       .then(res => setAnswer(res.data))
       .catch(err => console.log(err));
-  }, [question]);
+  }, [question, modal]);
 
   return (
     <div className="flex flex-col justify-between items-center">
@@ -32,7 +34,7 @@ const Home = () => {
 
       {/* Fixed bottom input area */}
       <div className="w-full md:w-4/6 p-3 fixed bottom-0">
-        <QuestInput loading={loading} setQuestion={setQuestion} />
+        <QuestInput modal={modal} setModal={setModal} loading={loading} setQuestion={setQuestion} />
       </div>
     </div>
   );

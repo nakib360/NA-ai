@@ -2,7 +2,7 @@ import { ArrowUp } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import { RiCheckboxBlankFill } from "react-icons/ri";
 
-const QuestInput = ({ setQuestion, loading }) => {
+const QuestInput = ({ setQuestion, loading, modal, setModal }) => {
   const [value, setValue] = useState("");
   const textareaRef = useRef(null);
 
@@ -39,18 +39,29 @@ const QuestInput = ({ setQuestion, loading }) => {
         value={value}
         rows={1}
       />
-      <button
-        type="submit"
-        onClick={loading ? undefined : () => {
-          if (value.trim()) {
-            setQuestion(value);
-            setValue("");
-          }
-        }}
-        className="text-background text-sm bg-foreground absolute right-3 bottom-3 p-1.5 md:p-2 rounded-full cursor-pointer dark:hover:bg-foreground/90 hover:bg-foreground/70"
-      >
-        {loading ? <RiCheckboxBlankFill className="text-xl" /> : <ArrowUp size={20} />}
-      </button>
+
+      <div className="absolute right-3 bottom-3 flex items-center gap-3">
+        <div className="flex items-center bg-primary text-primary-foreground rounded-full cursor-pointer">
+          <div onClick={() => setModal("gemini")} className={modal === "gemini" ? " p-2 bg-blue-400 rounded-l-full" : "p-2"}>
+            Gemini
+          </div>
+          <div onClick={() => setModal("chatGPT")} className={modal === "chatGPT" ? "p-2 bg-blue-400 rounded-r-full" : "p-2"}>
+            Chat GPT
+          </div>
+        </div>
+        <button
+          type="submit"
+          onClick={loading ? undefined : () => {
+            if (value.trim()) {
+              setQuestion(value);
+              setValue("");
+            }
+          }}
+          className=" text-background text-sm bg-foreground p-1.5 md:p-2 rounded-full cursor-pointer dark:hover:bg-foreground/90 hover:bg-foreground/70"
+        >
+          {loading ? <RiCheckboxBlankFill className="text-xl" /> : <ArrowUp size={20} />}
+        </button>
+      </div>
     </div>
   );
 };
