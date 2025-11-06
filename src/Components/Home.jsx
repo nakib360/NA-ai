@@ -10,9 +10,6 @@ const Home = () => {
   const [loading, setLoading] = useState(false);
   const [modal, setModal] = useState("chatGPT");
 
-  console.log("answer is loading", loading);
-
-
   useEffect(() => {
     if (!question.trim()) return;
 

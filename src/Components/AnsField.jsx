@@ -26,7 +26,12 @@ const AnsField = ({ question, answer, setLoading }) => {
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [chats])
+  }, [chats]);
+
+  useEffect(() => {
+    const hasPending = chats.some((chat) => chat.answer === null);
+    setLoading(hasPending);
+  }, [chats, setLoading]);
 
   return (
     <div className="flex flex-col gap-3 mt-3 px-0">
@@ -40,13 +45,13 @@ const AnsField = ({ question, answer, setLoading }) => {
               <Markdown>{chat.answer}</Markdown>
             </pre>
           ) : (
-            <div  className="flex items-center text-xs gap-1">
+            <div className="flex items-center text-xs gap-1">
               <Spinner className={"text-foreground"} width={15} />
               <GradientText className="text-xs" text={"Genarating your answer....."} />
             </div>
           )
           }
-          {chat?.answer ? setLoading(false) : setLoading(true)}
+          {/* {chat?.answer ? setLoading(false) : setLoading(true)} */}
         </div>
       ))}
       <div ref={bottomRef}></div>

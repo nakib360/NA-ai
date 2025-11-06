@@ -1,9 +1,29 @@
 import { Moon, PanelRight, Sun } from "lucide-react";
+import whiteNA from "../assets/na-ai-logo white.svg"
+import NA from "../assets/na-ai-logo.svg"
+import { useScroll } from "framer-motion";
+import { useEffect, useState } from "react";
 
 const Header = ({ theme, setTheme }) => {
+    const [isShadow, setIsShadow] = useState(false);
+    const [scrollValue, setScrollValue] = useState(0);
+    const { scrollY } = useScroll();
+    useEffect(() => {
+        return scrollY.onChange(latest => {
+            setScrollValue(latest);
+        })
+    }, [scrollY]);
+
+    useEffect(() => {
+        if (scrollValue === 0) {
+            setIsShadow(false);
+        } else {
+            setIsShadow(true);
+        }
+    }, [scrollValue])
     return (
-        <header className={`flex justify-between items-center bg-background p-5 shadow-lg ${window.scrollY !== 0 ? "shadow-secondary" : ""}`}>
-            <PanelRight size={20} strokeWidth={2.75} />
+        <header className={`flex justify-between items-center bg-background p-5 ${isShadow ? "shadow-lg shadow-secondary" : ""}`}>
+            <img className="w-12" src={theme === "dark" ? whiteNA : NA} alt="" />
 
             <div className="flex items-center gap-3">
                 {/* theme toogle */}
