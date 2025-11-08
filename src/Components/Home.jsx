@@ -9,14 +9,18 @@ const Home = () => {
   const [answer, setAnswer] = useState("");
   const [loading, setLoading] = useState(false);
   const [modal, setModal] = useState("chatGPT");
+  const [context, setContext] = useState([]);
+
+  // console.log(context);
 
   useEffect(() => {
     if (!question.trim()) return;
 
+    // axios.post(`http://localhost:4000/${modal === "chatGPT" ? "Hugging-face" : "gemini"}`, { question, context })
     axios.post(`https://na-ai-server.onrender.com/${modal === "chatGPT" ? "Hugging-face" : "gemini"}`, { question })
       .then(res => setAnswer(res.data))
       .catch(err => console.log(err));
-  }, [question, modal]);
+  }, [question, modal, context]);
 
   return (
     <div className="flex flex-col justify-between items-center">
@@ -26,7 +30,7 @@ const Home = () => {
           <GradientText className="font-semibold" text="Hi, I am NA Ai" />
           <p className="text-xs text-gray-400">What do you think today?</p>
         </div>
-        <AnsField setLoading={setLoading} question={question} answer={answer} />
+        <AnsField setLoading={setLoading} question={question} answer={answer} setContext={setContext} />
       </div>
 
       {/* Fixed bottom input area */}

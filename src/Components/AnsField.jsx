@@ -4,7 +4,7 @@ import Markdown from "react-markdown";
 import { Spinner } from "./ui/shadcn-io/spinner";
 import { GradientText } from "./ui/shadcn-io/gradient-text";
 
-const AnsField = ({ question, answer, setLoading }) => {
+const AnsField = ({ question, answer, setLoading, setContext }) => {
   const [chats, setChats] = useState([]);
   const bottomRef = useRef();
 
@@ -32,6 +32,10 @@ const AnsField = ({ question, answer, setLoading }) => {
     const hasPending = chats.some((chat) => chat.answer === null);
     setLoading(hasPending);
   }, [chats, setLoading]);
+  
+  useEffect(() => {
+    setContext(chats);
+  }, [chats, setContext]);
 
   return (
     <div className="flex flex-col gap-3 mt-3 px-0">
