@@ -17,7 +17,7 @@ const Home = () => {
     if (!question.trim()) return;
 
     // axios.post(`http://localhost:4000/${modal === "chatGPT" ? "Hugging-face" : "gemini"}`, { question, context })
-    axios.post(`https://na-ai-server.onrender.com/${modal === "chatGPT" ? "Hugging-face" : "gemini"}`, { question })
+    axios.post(`https://na-ai-server.onrender.com/${modal === "chatGPT" ? "Hugging-face" : "gemini"}`, { question, context })
       .then(res => setAnswer(res.data))
       .catch(err => console.log(err));
   }, [question, modal, context]);
