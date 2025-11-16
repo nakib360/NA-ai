@@ -6,7 +6,7 @@ Users can easily switch between **Gemini** and **ChatGPT modes** for flexible an
 ---
 
 ## Preview
-(Live Preview)[https://na--ai.web.app/]
+[Live Preview](https://na--ai.web.app/)
 
 ## 🚀 Features
 
